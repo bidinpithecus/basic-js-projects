@@ -11,16 +11,17 @@ const allowedKeys = [key.ENTER, key.ZERO, key.ONE, key.BACKSPACE, key.CTRL];
 
 binary.addEventListener("keydown", function(event) {
   const pressedKey = event.keyCode;
-  let sum;
+  const value = this.value;
+  const valueArray = value.split("");
+  const arrayLength = valueArray.length;
+  let powers, sum;
 
   if (pressedKey === key.ENTER) {
-    const value = binary.value;
-    const valueArray = value.split("");
-    const len = valueArray.length;
+    powers = 0;
     sum = 0;
 
-    for (let i = 0; len > i; i++) {
-      const powers = valueArray[i] * (2 ** ((len - 1) - i));
+    for (let i = 0; i < arrayLength; i++) {
+      powers = valueArray[i] * (2 ** ((arrayLength - 1) - i));
       sum += powers;
     }
 
@@ -28,5 +29,6 @@ binary.addEventListener("keydown", function(event) {
     event.preventDefault();
     window.alert("Only 0's and 1's bruh")
   }
+
   decimal.textContent = sum;
 });
