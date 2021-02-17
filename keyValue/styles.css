@@ -1,0 +1,27 @@
+h1 {
+  font-size: 38px;;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#outputs {
+  margin-left: 5px;
+}
+
+#new {
+  /* white-space: pre; */
+  font-size: 20px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p span {
+  color: red;
+}
