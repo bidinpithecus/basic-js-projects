@@ -1,0 +1,22 @@
+{
+  "name": "basic-js-projects",
+  "version": "1.0.0",
+  "description": "[Project ideas](https://github.com/florinpop17/app-ideas)",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bidins/basic-js-projects.git"
+  },
+  "author": "Bidins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bidins/basic-js-projects/issues"
+  },
+  "homepage": "https://github.com/Bidins/basic-js-projects#readme",
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
