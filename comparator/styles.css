@@ -1,3 +1,4 @@
-span {
+.output {
   font-weight: bold;
+  text-transform: capitalize;
 }

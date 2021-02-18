@@ -1,11 +1,12 @@
-const box = document.getElementById("box");
+/* eslint-disable func-names */
+const box = document.getElementById('box');
 const topLeft = document.getElementById('top-left');
 const topRight = document.getElementById('top-right');
 const bottomLeft = document.getElementById('bottom-left');
 const bottomRight = document.getElementById('bottom-right');
-const css = document.getElementById("css");
-const cssButton = document.getElementById("css-button");
-const unit = "px";
+const css = document.getElementById('css');
+const cssButton = document.getElementById('css-button');
+const unit = 'px';
 
 topLeft.value = 0;
 topRight.value = 0;
@@ -24,43 +25,33 @@ function writeCss() {
   border[2] = `border-bottom-left-radius: ${box.style.borderBottomLeftRadius};`;
   border[3] = `border-bottom-right-radius: ${box.style.borderBottomRightRadius};`;
 
-  css.value = border.join("\r\n");
-};
+  css.value = border.join('\r\n');
+}
 
 writeCss();
 
-cssButton.addEventListener("click", function() {
-  writeCss();
-});
-
-topLeft.addEventListener("change", function() {
-  if (parseInt(this.value) < 0) {
+function borderRadius(corner) {
+  if (parseInt(this.value, 10) < 0) {
     this.value = 0;
   } else {
-    box.style.borderTopLeftRadius = this.value + unit;
+    box.style[corner] = this.value + unit;
   }
+}
+
+cssButton.addEventListener('click', writeCss);
+
+topLeft.addEventListener('change', function () {
+  borderRadius.call(this, 'borderTopLeftRadius');
 });
 
-topRight.addEventListener("change", function() {
-  if (parseInt(this.value) < 0) {
-    this.value = 0;
-  } else {
-    box.style.borderTopRightRadius = this.value + unit;
-  }
+topRight.addEventListener('change', function () {
+  borderRadius.call(this, 'borderTopRightRadius');
 });
 
-bottomLeft.addEventListener("change", function() {
-  if (parseInt(this.value) < 0) {
-    this.value = 0;
-  } else {
-    box.style.borderBottomLeftRadius = this.value + unit;
-  }
+bottomLeft.addEventListener('change', function () {
+  borderRadius.call(this, 'borderBottomLeftRadius');
 });
 
-bottomRight.addEventListener("change", function() {
-  if (parseInt(this.value) < 0) {
-    this.value = 0;
-  } else {
-    box.style.borderBottomRightRadius = this.value + unit;
-  }
+bottomRight.addEventListener('change', function () {
+  borderRadius.call(this, 'borderBottomRightRadius');
 });
