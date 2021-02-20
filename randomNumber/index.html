@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Number Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Random Number Generator</h1>
+  <h2>Set the maximum and minimum ranges</h2>
+  <table class="block-ranges">
+    <tbody>
+      <tr>
+        <td>Min: </td>
+        <td>
+          <input type="number" id="min-range">
+        </td>
+      </tr>
+      <tr>
+        <td>Max: </td>
+        <td>
+          <input type="number" id="max-range">
+        </td>
+        <td ></td>
+      </tr>
+      <tr></tr>
+      <td>
+        <input type="radio" name="selection" id="only-int">
+        <span>Only integers</span>
+      </td>
+      <tr>
+        <td>
+          <input type="radio" name="selection" id="only-float">
+          <span>Only decimal</span>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="radio" name="selection" id="int-and-float">
+          <span>Both </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="button">
+  <button id="generate">Generate</button>
+</div>
+  <p id="result"></p>
+  <script src="script.js"></script>
+</body>
+</html>
