@@ -1,0 +1,54 @@
+body {
+  padding: 0;
+  margin-left: 0;
+  font-family: 'Muli', sans-serif;
+  background-color: rgb(155, 165, 175)
+}
+
+h2 {
+  text-align: center;
+}
+
+#result {
+  width: 276px;
+  height: 18px;
+  margin-left: 9px;
+  resize: none;
+}
+
+input[type="number"] {
+  width: 35px;
+  float: right;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+  float: right;
+}
+
+.primary-box {
+  width: 300px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  padding: 15px;
+  background-color:lightslategray;
+}
+
+.settings {
+  padding: 10px;
+}
+
+#generate {
+  margin-left: 9px;
+  height: 40px;
+  width: 278px;
+  font-size: 18px; 
+}
+
+.result-box {
+  background-color: #fff;
+  font-size: 18px;
+  height: 20px;
+}
