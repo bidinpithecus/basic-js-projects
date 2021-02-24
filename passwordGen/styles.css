@@ -27,7 +27,7 @@ input[type="checkbox"] {
 }
 
 .primary-box {
-  width: 300px;
+  width: 400px;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -43,12 +43,13 @@ input[type="checkbox"] {
 #generate {
   margin-left: 9px;
   height: 40px;
-  width: 278px;
+  width: 391px;
   font-size: 18px; 
 }
 
 .result-box {
   background-color: #fff;
+  margin-left: 9px;
   font-size: 18px;
   height: 20px;
 }

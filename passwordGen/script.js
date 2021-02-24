@@ -12,6 +12,12 @@ const symbolsList = '!@#$%&*(){}[]';
 let result = '';
 let totalList = '';
 
+function corrector() {
+  if (length.value > 24) {
+    length.value = this.max;
+  }
+}
+
 function upperCaseMarked() {
   if (upperCase.checked) {
     totalList += upperCaseList;
@@ -45,6 +51,7 @@ function randomChoice(list) {
 }
 
 function finalResult() {
+  totalList = '';
   upperCaseMarked();
   lowerCaseMarked();
   numbersMarked();
@@ -52,4 +59,5 @@ function finalResult() {
   randomChoice(totalList);
 }
 
+length.addEventListener('change', corrector);
 generator.addEventListener('click', finalResult);
