@@ -1,0 +1,40 @@
+body {
+  font-family: consolas;
+  margin-left: 0;
+  margin-top: 0;
+}
+
+input[id="item-quantity"] {
+  width: 40px;
+}
+
+input[id="item-price"] {
+  width: 80px;
+}
+
+.block-container {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+.block-cart {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cart {
+  font-size: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#total-price {
+  font-size: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
