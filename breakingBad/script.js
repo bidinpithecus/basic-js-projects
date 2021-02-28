@@ -1,82 +1,83 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
-const characterName = document.getElementById('name');
-const imgLink = document.getElementById('img-link');
-const imgSrc = document.getElementById('img-src');
-const nickname = document.getElementById('nickname');
-const age = document.getElementById('age');
-const status = document.getElementById('status');
-const occupation = document.getElementById('occupation');
-const seasons = document.getElementById('seasons-appearance');
-const betterCallSaul = document.getElementById('better-call-saul');
-const actor = document.getElementById('actor');
-const button = document.getElementById('random');
+const fields = {
+  characterName: document.getElementById('name'),
+  imgLink: document.getElementById('img-link'),
+  imgSrc: document.getElementById('img-src'),
+  nickname: document.getElementById('nickname'),
+  age: document.getElementById('age'),
+  alive: document.getElementById('status'),
+  occupation: document.getElementById('occupation'),
+  seasons: document.getElementById('seasons-appearance'),
+  betterCallSaul: document.getElementById('better-call-saul'),
+  actor: document.getElementById('actor'),
+  button: document.getElementById('random'),
+};
 
 const today = new Date();
-const character = brBadList[0];
-let birthday;
-let actualAge;
 
-characterName.textContent += character.name;
-imgLink.href = character.img;
-imgSrc.src = character.img;
-nickname.textContent += character.nickname;
-status.textContent += character.status;
-occupation.textContent += character.occupation.join(', ');
-actor.textContent += character.portrayed;
+function characterAge(characterObj) {
+  const birthday = new Date(characterObj.birthday);
+  const actualAge = today.getFullYear() - birthday.getFullYear();
+  let answer = actualAge;
 
-function characterSettings(e) {
-  characterName.textContent = `Name: ${e.name}`;
-  imgLink.href = e.img;
-  imgSrc.src = e.img;
-  nickname.textContent = `Nickname: ${e.nickname}`;
-  status.textContent = `Status: ${e.status}`;
-  occupation.textContent = `Occupation; ${e.occupation.join(', ')}`;
-  actor.textContent = `Actor: ${e.portrayed}`;
-}
-
-function characterAge(e) {
-  birthday = new Date(e.birthday);
-  actualAge = today.getFullYear() - birthday.getFullYear();
   if (String(birthday) === 'Invalid Date') {
-    age.textContent = 'Age: Unknown';
+    answer = 'Unknown';
   } else if (birthday.getMonth() > today.getMonth()) {
-    age.textContent = `Age: ${String(actualAge - 1)}`;
-  } else if (birthday.getMonth() === today.getMonth()) {
-    if (birthday.getDate() > today.getDate()) {
-      age.textContent = `Age: ${String(actualAge - 1)}`;
-    } else {
-      age.textContent = `Age: ${String(actualAge)}`;
-    }
-  } else {
-    age.textContent = `Age: ${String(actualAge)}`;
+    answer = actualAge - 1;
+  } else if (birthday.getMonth() === today.getMonth() && birthday.getDate() > today.getDate()) {
+    answer = actualAge - 1;
   }
+
+  return `Age: ${answer}`;
 }
 
-function brBadAppearance(e) {
-  if (e.appearance.length === 5) {
-    seasons.textContent = 'Seasons: All of them';
-  } else if (e.appearance.length === 0) {
-    seasons.textContent = 'Seasons: None';
-  } else {
-    seasons.textContent = `Seasons: ${e.appearance.join(', ')}`;
+function brBadAppearance(characterObj) {
+  let answer = characterObj.appearance.join(', ');
+
+  if (characterObj.appearance.length === 5) {
+    answer = 'All of them';
+  } else if (characterObj.appearance.length === 0) {
+    answer = 'None';
   }
+
+  return `Seasons: ${answer}`;
 }
 
-function betterCallSaulAppearance(e) {
-  if (e.better_call_saul_appearance.length === 0) {
-    betterCallSaul.textContent = 'Better Call Saul: No';
-  } else {
-    betterCallSaul.textContent = 'Better Call Saul: Yes';
+function betterCallSaulAppearance(characterObj) {
+  const output = 'Better Call Saul:';
+  let answer = true;
+
+  if (characterObj.better_call_saul_appearance.length === 0) {
+    answer = false;
   }
+
+  return answer ? `${output} Yes` : `${output} No`;
 }
 
-function buttonClick() {
-  const randomOne = brBadList[Math.floor(Math.random() * brBadList.length)];
-  characterSettings(randomOne);
-  characterAge(randomOne);
-  brBadAppearance(randomOne);
-  betterCallSaulAppearance(randomOne);
+function characterSettings(characterObj) {
+  fields.characterName.textContent = `Name: ${characterObj.name}`;
+  fields.imgLink.href = characterObj.img;
+  fields.imgSrc.src = characterObj.img;
+  fields.nickname.textContent = `Nickname: ${characterObj.nickname}`;
+  fields.alive.textContent = `Status: ${characterObj.status}`;
+  fields.occupation.textContent = `Occupation: ${characterObj.occupation.join(', ')}`;
+  fields.actor.textContent = `Actor: ${characterObj.portrayed}`;
+  fields.age.textContent = characterAge(characterObj);
+  fields.seasons.textContent = brBadAppearance(characterObj);
+  fields.betterCallSaul.textContent = betterCallSaulAppearance(characterObj);
 }
 
-button.addEventListener('click', buttonClick);
+function renderCharacter(index) {
+  const character = brBadList[index];
+
+  characterSettings(character);
+}
+
+renderCharacter(0);
+
+fields.button.addEventListener('click', () => {
+  const randomOne = Math.floor(Math.random() * brBadList.length);
+
+  renderCharacter(randomOne);
+});
