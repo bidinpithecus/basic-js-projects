@@ -96,7 +96,7 @@ function handleButtonClick(action) {
     buttonClicker(doubleCoin);
     coins -= cost.doubleClick;
     cost.doubleClick *= 4;
-  } else if (action === 'pointOnePassive') {
+  } else if (action === 'passivePointOne') {
     buttonPassive(0.1);
     coins -= cost.passivePointOne;
     cost.passivePointOne += 10;
@@ -115,5 +115,5 @@ fields.doubleClick.addEventListener('click', () => {
   handleButtonClick('doubleClick');
 });
 fields.passivePointOne.addEventListener('click', () => {
-  handleButtonClick('pointOnePassive');
+  handleButtonClick('passivePointOne');
 });
