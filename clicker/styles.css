@@ -1,0 +1,13 @@
+body {
+  margin-top: 0;
+  margin-left: 0;
+  font-family: consolas;
+  background-color: rgb(155, 165, 175)
+}
+
+.add-coin {
+  width: max-content;
+  margin-top: 120px;
+  margin-right: auto;
+  margin-left: auto;
+}
