@@ -7,99 +7,116 @@ const fields = {
   totalCount: document.getElementById('total-count'),
   clickValue: document.getElementById('click-value'),
   passivePointOne: document.getElementById('passive-01'),
+  doublePassive: document.getElementById('passive-double'),
 };
 
-const cost = {};
+const cost = {
+  oneMoreClick: 30,
+  doubleClick: 100,
+  passivePointOne: 10,
+  doublePassive: 150,
+};
+
 let clicks = 0;
 let coins = 0;
-let quantity = 1;
-let perSec = 0;
+let clickValue = 1;
+let coinsPerSec = 0;
+
+function actualCoins() {
+  coins += clickValue;
+}
 
 function buttonClicker(valueChanger) {
   valueChanger();
-  return quantity;
-}
-
-function buttonPassive(value) {
-  perSec += value;
-  setInterval(() => {
-    coins += value;
-  }, 1000);
-}
-
-function actualCoins() {
   return coins;
 }
 
 function oneMoreCoin() {
-  quantity += 1;
+  clickValue += 1;
+  coins -= cost.oneMoreClick;
+  cost.oneMoreClick *= 2.5;
 }
 
 function doubleCoin() {
-  quantity *= 2;
+  clickValue *= 2;
+  coins -= cost.doubleClick;
+  cost.doubleClick *= 4.5;
 }
 
-function prices() {
-  cost.passivePointOne = 10;
-  cost.oneMoreClick = 20;
-  cost.doubleClick = 100;
+function buttonPassive(valueChanger) {
+  valueChanger();
 }
-prices();
+
+function pointOnePassive() {
+  coinsPerSec += 0.1;
+  coins -= cost.passivePointOne;
+  cost.passivePointOne *= 1.75;
+}
+
+function doublePassiveCoins() {
+  coinsPerSec *= 2;
+  coins -= cost.doublePassive;
+  cost.doublePassive *= 4.5;
+}
 
 function showFields() {
   fields.counter.innerHTML = `Bidcoins: ${coins.toFixed(2)}`;
   fields.totalCount.innerHTML = `Total clicks: ${clicks}`;
-  fields.clickValue.innerHTML = `Click value: ${quantity}`;
-  fields.perSecond.innerHTML = `Coins per second: ${perSec.toFixed(2)}`;
-  fields.oneMoreClick.innerHTML = `ONE MORE BIDCOIN PER CLICK: ${cost.oneMoreClick}`;
-  fields.doubleClick.innerHTML = `DOUBLE THE BIDCOIN PER CLICK: ${cost.doubleClick}`;
-  fields.passivePointOne.innerHTML = `ADD 0.1 BIDCOIN PER SEC: ${cost.passivePointOne}`;
+  fields.clickValue.innerHTML = `Click value: ${clickValue}`;
+  fields.perSecond.innerHTML = `Coins per second: ${coinsPerSec.toFixed(2)}`;
+  fields.oneMoreClick.innerHTML = `ONE MORE BIDCOIN PER CLICK: ${cost.oneMoreClick.toFixed(2)}`;
+  fields.doubleClick.innerHTML = `DOUBLE THE BIDCOIN PER CLICK: ${cost.doubleClick.toFixed(2)}`;
+  fields.passivePointOne.innerHTML = `ADD 0.1 BIDCOIN PER SEC: ${cost.passivePointOne.toFixed(2)}`;
+  fields.doublePassive.innerHTML = `DOUBLE THE BIDCOINS PER SEC: ${cost.doublePassive.toFixed(2)}`;
 }
 
 function disableButtons() {
-  if (coins < cost.oneMoreClick) {
-    fields.oneMoreClick.disabled = true;
-  } else {
+  if (coins >= cost.oneMoreClick) {
     fields.oneMoreClick.disabled = false;
-  }
-  if (coins < cost.doubleClick) {
-    fields.doubleClick.disabled = true;
   } else {
+    fields.oneMoreClick.disabled = true;
+  }
+  if (coins >= cost.doubleClick) {
     fields.doubleClick.disabled = false;
-  }
-  if (coins < cost.passivePointOne) {
-    fields.passivePointOne.disabled = true;
   } else {
+    fields.doubleClick.disabled = true;
+  }
+  if (coins >= cost.passivePointOne) {
     fields.passivePointOne.disabled = false;
+  } else {
+    fields.passivePointOne.disabled = true;
+  }
+  if (coins >= cost.doublePassive && coinsPerSec !== 0) {
+    fields.doublePassive.disabled = false;
+  } else {
+    fields.doublePassive.disabled = true;
   }
 }
+
+disableButtons();
 
 function renderPage() {
   setInterval(() => {
     showFields();
     disableButtons();
-  }, 10);
+    coins += coinsPerSec;
+  }, 1000);
 }
 
 renderPage();
 
 function handleButtonClick(action) {
   if (action === 'clicker') {
+    actualCoins();
     clicks += 1;
-    coins += quantity;
-    buttonClicker(actualCoins);
   } else if (action === 'oneMoreClick') {
     buttonClicker(oneMoreCoin);
-    coins -= cost.oneMoreClick;
-    cost.oneMoreClick *= 2;
   } else if (action === 'doubleClick') {
     buttonClicker(doubleCoin);
-    coins -= cost.doubleClick;
-    cost.doubleClick *= 4;
   } else if (action === 'passivePointOne') {
-    buttonPassive(0.1);
-    coins -= cost.passivePointOne;
-    cost.passivePointOne += 10;
+    buttonPassive(pointOnePassive);
+  } else if (action === 'doublePassive') {
+    buttonPassive(doublePassiveCoins);
   }
   showFields();
   disableButtons();
@@ -116,4 +133,7 @@ fields.doubleClick.addEventListener('click', () => {
 });
 fields.passivePointOne.addEventListener('click', () => {
   handleButtonClick('passivePointOne');
+});
+fields.doublePassive.addEventListener('click', () => {
+  handleButtonClick('doublePassive');
 });
