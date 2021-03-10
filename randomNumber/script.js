@@ -1,8 +1,8 @@
+/* eslint-disable prefer-const */
 const minRange = document.getElementById('min-range');
 const maxRange = document.getElementById('max-range');
 const integers = document.getElementById('only-int');
 const decimal = document.getElementById('only-float');
-const intAndFloat = document.getElementById('int-and-float');
 const generate = document.getElementById('generate');
 const result = document.getElementById('result');
 
@@ -11,11 +11,6 @@ minRange.value = 0;
 maxRange.value = 100;
 let numMin;
 let numMax;
-let numGenerated;
-let random;
-let lastDigit;
-let numGenInt;
-let numGenFloat;
 
 function minimum() {
   numMin = parseInt(minRange.value, 10);
@@ -35,40 +30,44 @@ function maximum() {
   return numMax;
 }
 
-function randomNumber(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-function onlyInt() {
+function getSelectedOption() {
   if (integers.checked) {
-    result.textContent = Math.floor(numGenerated);
+    return 'INTEGERS';
   }
-}
-
-function onlyFloat() {
   if (decimal.checked) {
-    result.textContent = (numGenerated).toFixed(2);
+    return 'FLOAT';
   }
+  return 'BOTH';
 }
 
-function floatToo() {
-  if (intAndFloat.checked) {
-    result.textContent = Number(lastDigit) % 2 === 0 ? numGenInt : numGenFloat;
+function randomInt() {
+  return Math.floor(Math.random() * (maximum() - minimum() + 1) + minimum());
+}
+
+function randomFloat() {
+  return (Math.random() * (maximum() - minimum()) + minimum()).toFixed(2);
+}
+
+function randomNumber() {
+  const selectedOption = getSelectedOption();
+  let random;
+  let lastDigit;
+
+  if (selectedOption === 'INTEGERS') {
+    return randomInt();
   }
+  if (selectedOption === 'FLOAT') {
+    return randomFloat();
+  }
+  random = String(Math.random());
+  lastDigit = random[random.length - 1];
+  return Number(lastDigit) % 2 === 0 ? randomInt() : randomFloat();
 }
 
 function buttonClick() {
-  numGenerated = randomNumber(minimum(), maximum());
-  numGenFloat = numGenerated.toFixed(2);
-  numGenInt = Math.floor(numGenerated);
-  random = String(Math.random());
-  lastDigit = random[random.length - 1];
-  onlyInt();
-  onlyFloat();
-  floatToo();
+  result.textContent = randomNumber();
 }
 
 minRange.addEventListener('change', minimum);
-minRange.addEventListener('keydown', minimum);
 maxRange.addEventListener('change', maximum);
 generate.addEventListener('click', buttonClick);
