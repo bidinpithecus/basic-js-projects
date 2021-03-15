@@ -13,9 +13,12 @@ const fields = {
 let timeNow;
 let times = [0, 0, 0, 0];
 let eachLap;
+let actualTime;
 
 function stopwatch() {
-  times[0] += 1;
+  actualTime = `${times[3]}:${times[2]}:${times[1]}.${times[0] / 10}`;
+  times[0] += 10;
+
   if (times[0] >= 100) {
     times[1] += 1;
     times[0] = 0;
@@ -26,12 +29,12 @@ function stopwatch() {
     times[3] += 1;
     times[2] = 0;
   }
-  fields.time.innerHTML = `${times[3]}:${times[2]}:${times[1]}.${times[0]}`;
+  fields.time.innerHTML = actualTime;
 }
 
 function handleButtonClick(action) {
   if (action === 'start') {
-    timeNow = setInterval(stopwatch, 10);
+    timeNow = setInterval(stopwatch, 100);
     buttons.start.disabled = true;
     buttons.stop.disabled = false;
     buttons.lap.disabled = false;
@@ -39,7 +42,7 @@ function handleButtonClick(action) {
     buttons.clearLaps.disabled = false;
   } else if (action === 'lap') {
     eachLap = document.createElement('li');
-    eachLap.innerHTML = `${times[3]}:${times[2]}:${times[1]}.${times[0]}`;
+    eachLap.innerHTML = actualTime;
     fields.laps.append(eachLap);
   } else if (action === 'stop') {
     clearInterval(timeNow);
