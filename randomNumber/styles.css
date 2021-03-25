@@ -1,6 +1,8 @@
 body {
-  font-family: Consolas, monaco, monospace;
-  margin-left: 0;
+  background-color: rgb(51, 51, 51);
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: consolas;
 }
 
 h1 {
@@ -24,6 +26,10 @@ h2 {
 
 input[type="number"] {
   width: 65px;
+}
+
+.buttons {
+  background-color: rgb(200, 200, 200);
 }
 
 .button {
