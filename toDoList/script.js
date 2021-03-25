@@ -25,6 +25,7 @@ function renderPage() {
     lista.append(newElement);
     deleteButton = document.createElement('button');
     deleteButton.id = index;
+    deleteButton.classList = 'buttons';
     deleteButton.addEventListener('click', (e) => {
       lista.innerHTML = '';
       toDos.splice(parseInt(e.target.id, 10), 1);
