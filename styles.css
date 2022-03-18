@@ -1,11 +1,21 @@
 body {
   background-color: rgb(51, 51, 51);
   color: rgb(255, 255, 255);
-  font-size: 16px;
+  font-size: 18px;
   font-family: consolas;
 }
 
 .buttons {
   background-color: rgb(200, 200, 200);
   padding: 5px;
+}
+
+.link {
+  color: #fff;
+  font-weight: bolder;
+}
+
+.description {
+  color: #fff;
+  font-size: 16px;
 }

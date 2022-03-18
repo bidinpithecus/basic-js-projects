@@ -21,6 +21,10 @@ input {
   background-color: rgb(200, 200, 200);
 }
 
+.link {
+  color: #fff
+}
+
 textarea {
   display: block;
   width: 500px;

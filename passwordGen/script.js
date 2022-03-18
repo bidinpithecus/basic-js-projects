@@ -5,10 +5,13 @@ const lowerCase = document.getElementById('lowercase');
 const numbers = document.getElementById('numbers');
 const symbols = document.getElementById('symbols');
 const generator = document.getElementById('generate');
+const clipboard = document.getElementById('clipboard');
+
 const upperCaseList = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowerCaseList = 'abcdefghijklmnopqrstuvwxyz';
 const numbersList = '0123456789';
 const symbolsList = '!@#$%&*(){}[]';
+
 let result = '';
 let totalList = '';
 
@@ -61,3 +64,12 @@ function finalResult() {
 
 length.addEventListener('change', corrector);
 generator.addEventListener('click', finalResult);
+clipboard.addEventListener('click', () => {
+  /* Copy the text inside the text field */
+  if (visor.textContent) {
+    navigator.clipboard.writeText(visor.textContent);
+    alert("Password copied to clipboard.");
+  } else {
+    alert("There is nothing to be copied.");
+  }
+});

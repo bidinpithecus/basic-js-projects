@@ -39,6 +39,10 @@ input[type="number"] {
   margin-right: auto;
 }
 
+.link {
+  color: #fff
+}
+
 #result {
   width: max-content;
   font-weight: bold;
