@@ -83,8 +83,8 @@ fields.statesInput.addEventListener("click", function() {
 			checkbox.id = "finalState" + index;
 			item.appendChild(checkbox);
 			finalStatesDiv.ul.appendChild(item);
-			console.log(document.getElementById(checkbox));
-			document.getElementById(checkbox.id).addEventListener("change", getFinalState());
+			// console.log(document.getElementById(checkbox));
+			// document.getElementById(checkbox.id).addEventListener("change", getFinalState());
 		});
 
 		fields.initialState = initialStateDiv.select;
