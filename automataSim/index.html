@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automata Simulator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+  <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+  <a class="link" title="Go back to home page" href="../index.html">HOME</a>
+  <h1>Automata Simulator</h1>
+  <h2>Welcome to the Automata Simulator</h2>
+  <div hidden id="description">
+    <h3>An automata is defined by its five-tuple, the notation is A = (Q, ∑, δ, q₀, F)</h3>
+    <h4>Where</h4>
+    <ul>
+      <li>
+        Q = A finite set of states.
+      </li>
+      <br>
+      <li>
+        ∑ = A finite set of input symbols.
+      </li>
+      <br>
+      <li>
+        δ = A transition function that takes as arguments a state and an input symbol and returns a state.
+      </li>
+      <br>
+      <li>
+        q₀ = The initial state.
+      </li>
+      <br>
+      <li>
+        F = A set of final or accepting states. (F is a subset of Q)
+      </li>
+    </ul>
+    <br>
+  </div>
+  <button id="hideDescription">Hide</button>
+  <p>Insert the states separated by semicolon</p>
+  <label>Q:</label>
+  <input type="text" id="states" placeholder="e.g. q0;q1;q2">
+  <button id="statesInput">INPUT</button>
+  <br>
+  <p>Insert the input symbols separated by semicolon</p>
+  <label>∑:</label>
+  <input type="text" id="symbols" placeholder="e.g. a;b;c">
+  <button id="symbolsInput">INPUT</button>
+  <br>
+
+  <!-- <br>
+  <br>
+  <table>
+    <tr>
+      <th>States</th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+    <tr>
+      <th>q0</th>
+      <td><input type="checkbox"></td>
+      <td><input type="checkbox"></td>
+    </tr>
+    <tr>
+      <th>q1</th>
+      <td><input type="checkbox"></td>
+      <td><input type="checkbox"></td>
+    </tr>
+    <tr>
+      <th>q2</th>
+      <td><input type="checkbox"></td>
+      <td><input type="checkbox"></td>
+    </tr>
+  </table> -->
+
+  <script src="script.js"></script>
+</body>
+</html>
